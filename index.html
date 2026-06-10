@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanketh — The Predictive Brain for Supply Chains | Investor Overview</title>
+  <meta name="description" content="Sanketh is an AI-powered demand forecasting and supply chain platform for Indian enterprises. See the market opportunity, business model and ROI in INR.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'&gt;&lt;circle cx='9' cy='23' r='3.5' fill='%236d5cff'/&gt;&lt;path d='M9 15a8 8 0 0 1 8 8' stroke='%236d5cff' stroke-width='3' stroke-linecap='round' fill='none'/&gt;&lt;path d='M9 8a15 15 0 0 1 15 15' stroke='%2319d3ff' stroke-width='3' stroke-linecap='round' fill='none'/&gt;&lt;/svg&gt;">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sanketh.css">
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <defs>
+          <linearGradient id="lgPre" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6d5cff"/><stop offset="0.6" stop-color="#19d3ff"/><stop offset="1" stop-color="#2fe6a7"/>
+          </linearGradient>
+        </defs>
+        <circle cx="9" cy="23" r="3.2" fill="url(#lgPre)"/>
+        <path d="M9 16a7 7 0 0 1 7 7" stroke="url(#lgPre)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+        <path d="M9 10.5a12.5 12.5 0 0 1 12.5 12.5" stroke="url(#lgPre)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.8"/>
+        <path d="M9 5a18 18 0 0 1 18 18" stroke="url(#lgPre)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.55"/>
+      </svg>
+      <span>Sanketh</span>
+    </div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+
+  <!-- ============ AMBIENT LAYERS ============ -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-aurora">
+    <span class="aurora a1"></span>
+    <span class="aurora a2"></span>
+    <span class="aurora a3"></span>
+  </div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header id="site-header">
+    <nav class="nav-shell">
+      <a href="#hero" class="logo">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="lgNav" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#6d5cff"/><stop offset="0.6" stop-color="#19d3ff"/><stop offset="1" stop-color="#2fe6a7"/>
+            </linearGradient>
+          </defs>
+          <circle cx="9" cy="23" r="3.2" fill="url(#lgNav)"/>
+          <path d="M9 16a7 7 0 0 1 7 7" stroke="url(#lgNav)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <path d="M9 10.5a12.5 12.5 0 0 1 12.5 12.5" stroke="url(#lgNav)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.8"/>
+          <path d="M9 5a18 18 0 0 1 18 18" stroke="url(#lgNav)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.55"/>
+        </svg>
+        <span>Sanketh</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#problem" class="nav-link">Problem</a></li>
+        <li><a href="#solution" class="nav-link">Solution</a></li>
+        <li><a href="#product" class="nav-link">Product</a></li>
+        <li><a href="#market" class="nav-link">Market</a></li>
+        <li><a href="#business" class="nav-link">Business Model</a></li>
+        <li><a href="#roi" class="nav-link">ROI</a></li>
+        <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://prisma-live-6bb9.web.app" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+          <span class="btn-label">Launch Live App</span>
+          <span class="btn-shine"></span>
+        </a>
+      </div>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-badge reveal" data-delay="0">
+          <span class="pulse-dot"></span> Enterprise AI SaaS · Live & Demo-Ready
+        </div>
+        <h1 class="hero-title">
+          <span class="line-mask"><span class="line">Every business guesses</span></span>
+          <span class="line-mask"><span class="line">what to stock.</span></span>
+          <span class="line-mask"><span class="line gradient-text">Sanketh knows.</span></span>
+        </h1>
+        <p class="hero-sub reveal" data-delay="450">
+          Sanketh is an AI platform that predicts product demand <strong>weeks before it happens</strong> —
+          so businesses stop losing money to empty shelves and dead stock.
+          One platform, five industries, measurable savings in rupees.
+        </p>
+        <div class="hero-actions reveal" data-delay="600">
+          <a href="#roi" class="btn btn-primary btn-lg magnetic">
+            <span class="btn-label">See the ROI in ₹</span>
+            <span class="btn-shine"></span>
+          </a>
+          <a href="https://prisma-live-6bb9.web.app" target="_blank" rel="noopener" class="btn btn-ghost btn-lg magnetic">
+            <span class="btn-label">Try the Live Product ↗</span>
+          </a>
+        </div>
+        <div class="hero-stats reveal" data-delay="750">
+          <div class="hero-stat">
+            <h4><span class="count-up" data-target="98.7" data-decimals="1">0</span>%</h4>
+            <p>Forecast accuracy<br>(ensemble model)</p>
+          </div>
+          <div class="hero-stat">
+            <h4>₹<span class="count-up" data-target="140" data-decimals="0">0</span>&nbsp;L&nbsp;Cr</h4>
+            <p>Global market<br>opportunity</p>
+          </div>
+          <div class="hero-stat">
+            <h4><span class="count-up" data-target="14" data-decimals="0">0</span> days</h4>
+            <p>Advance warning<br>before stockouts</p>
+          </div>
+          <div class="hero-stat">
+            <h4><span class="count-up" data-target="5" data-decimals="0">0</span></h4>
+            <p>Industry verticals,<br>one platform</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" data-delay="500">
+        <div class="glass-window tilt-card" data-tilt>
+          <div class="window-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="window-title">Sanketh · Live Intelligence Feed</span>
+            <span class="live-chip"><span class="pulse-dot"></span>LIVE</span>
+          </div>
+          <div class="hero-mini-chart">
+            <svg id="hero-chart" viewBox="0 0 420 120" preserveAspectRatio="none"></svg>
+            <div class="mini-chart-caption">
+              <span>Demand forecast · next 8 weeks</span>
+              <span class="chip-up">▲ trending +12%</span>
+            </div>
+          </div>
+          <div class="ticker-shell">
+            <div class="ticker-fade top"></div>
+            <div class="ticker" id="live-ticker"></div>
+            <div class="ticker-fade bottom"></div>
+          </div>
+        </div>
+        <div class="floating-card fc-1">
+          <span class="fc-icon">⚠️</span>
+          <div><strong>Stockout predicted</strong><small>SKU FA-2210 · 11 days out</small></div>
+        </div>
+        <div class="floating-card fc-2">
+          <span class="fc-icon">💰</span>
+          <div><strong>₹4.2 L saved</strong><small>this month · overstock avoided</small></div>
+        </div>
+      </div>
+    </div>
+    <a href="#metrics-strip" class="scroll-hint" aria-label="Scroll down">
+      <span class="mouse"><span class="wheel"></span></span>
+    </a>
+  </section>
+
+  <!-- ============ METRICS MARQUEE ============ -->
+  <div class="marquee-strip" id="metrics-strip">
+    <div class="marquee-track">
+      <span>🏭 5 industry verticals</span><i>◆</i>
+      <span>🤖 12 AI forecasting models</span><i>◆</i>
+      <span>⚡ Day-1 forecasts, zero training data needed</span><i>◆</i>
+      <span>🛡️ Pharma-grade compliance (US FDA 21 CFR Part 11)</span><i>◆</i>
+      <span>🔌 Plug-and-play Shopify & ERP integration</span><i>◆</i>
+      <span>📈 Real-time market trend sensing</span><i>◆</i>
+      <span>🏭 5 industry verticals</span><i>◆</i>
+      <span>🤖 12 AI forecasting models</span><i>◆</i>
+      <span>⚡ Day-1 forecasts, zero training data needed</span><i>◆</i>
+      <span>🛡️ Pharma-grade compliance (US FDA 21 CFR Part 11)</span><i>◆</i>
+      <span>🔌 Plug-and-play Shopify & ERP integration</span><i>◆</i>
+      <span>📈 Real-time market trend sensing</span><i>◆</i>
+    </div>
+  </div>
+
+  <!-- ============ PROBLEM ============ -->
+  <section id="problem" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">01 · The Problem</span>
+      <h2 class="section-title">Indian businesses bleed money on <span class="gradient-text">inventory they can't predict</span></h2>
+      <p class="section-sub">Most companies still plan stock using last year's spreadsheets. The result is a silent, recurring tax on revenue — paid every single month.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="stat-card reveal tilt-card" data-tilt data-delay="0">
+        <div class="stat-icon">📉</div>
+        <h3>₹<span class="count-up" data-target="1.75" data-decimals="2">0</span> L Cr</h3>
+        <p class="stat-label">lost every year by Indian retail to stockouts — customers walk away when shelves are empty</p>
+      </div>
+      <div class="stat-card reveal tilt-card" data-tilt data-delay="120">
+        <div class="stat-icon">📦</div>
+        <h3><span class="count-up" data-target="30" data-decimals="0">0</span>%</h3>
+        <p class="stat-label">of working capital sits frozen in excess inventory that may never sell at full price</p>
+      </div>
+      <div class="stat-card reveal tilt-card" data-tilt data-delay="240">
+        <div class="stat-icon">⏱️</div>
+        <h3><span class="count-up" data-target="0" data-decimals="0">0</span> days</h3>
+        <p class="stat-label">of advance warning with traditional systems — they discover a stockout only after it happens</p>
+      </div>
+      <div class="stat-card reveal tilt-card" data-tilt data-delay="360">
+        <div class="stat-icon">📊</div>
+        <h3><span class="count-up" data-target="73" data-decimals="0">0</span>%</h3>
+        <p class="stat-label">of supply chain planning in India still runs on manual spreadsheets and gut feeling</p>
+      </div>
+    </div>
+    <div class="problem-punch reveal">
+      <p>“Companies don't lose money because demand is unpredictable.<br>They lose money because <strong>they're not using the data that predicts it.</strong>”</p>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTION ============ -->
+  <section id="solution" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">02 · The Solution</span>
+      <h2 class="section-title">Sanketh in one sentence:<br><span class="gradient-text">Sense. Predict. Act.</span></h2>
+      <p class="section-sub">Sanketh connects to a company's sales systems, reads live market signals, and tells the operations team exactly what to stock, when, and how much — before demand shifts.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal" data-delay="0">
+        <div class="step-num">1</div>
+        <div class="step-art sense">
+          <span class="orbit o1"></span><span class="orbit o2"></span><span class="orbit o3"></span>
+          <span class="core"></span>
+        </div>
+        <h3>Sense</h3>
+        <p>Pulls in live sales from Shopify/ERP plus external signals — Google search trends, social buzz, weather, economic data, even competitor prices.</p>
+        <div class="step-foot">8+ live data sources</div>
+      </div>
+      <div class="step-arrow reveal" data-delay="150">→</div>
+      <div class="step-card reveal" data-delay="200">
+        <div class="step-num">2</div>
+        <div class="step-art predict">
+          <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span><span class="bar b4"></span><span class="bar b5"></span>
+        </div>
+        <h3>Predict</h3>
+        <p>12 AI models — including Amazon's and Google's latest forecasting tech — compete, and Sanketh automatically picks the most accurate blend per product.</p>
+        <div class="step-foot">Best / base / worst-case scenarios</div>
+      </div>
+      <div class="step-arrow reveal" data-delay="350">→</div>
+      <div class="step-card reveal" data-delay="400">
+        <div class="step-num">3</div>
+        <div class="step-art act">
+          <span class="ping"></span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Act</h3>
+        <p>Sends shortage alerts 5–14 days early, recommends exact reorder quantities, and can push purchase orders straight into the company's ERP.</p>
+        <div class="step-foot">Alerts → decisions → ₹ saved</div>
+      </div>
+    </div>
+
+    <div class="moat-row reveal">
+      <div class="moat-chip" data-delay="0"><strong>Day-1 value</strong><span>Forecasts from the first day — no waiting months to "train" on data</span></div>
+      <div class="moat-chip" data-delay="100"><strong>5 industries, 1 codebase</strong><span>Fashion, electronics, pharma, agro & hardware — each gets a tailored experience</span></div>
+      <div class="moat-chip" data-delay="200"><strong>Regulatory moat</strong><span>Pharma compliance (audit trails, batch tracking) that competitors can't bolt on easily</span></div>
+      <div class="moat-chip" data-delay="300"><strong>Built to scale</strong><span>True multi-tenant SaaS — one deployment serves hundreds of paying customers</span></div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCT SHOWCASE ============ -->
+  <section id="product" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">03 · The Product</span>
+      <h2 class="section-title">One platform, <span class="gradient-text">five revenue verticals</span></h2>
+      <p class="section-sub">Each industry pays for the same core engine but sees a product built for its world. Select a vertical — the dashboard below is a live, working preview.</p>
+    </div>
+
+    <div class="industry-tabs reveal" id="industry-tabs">
+      <button class="ind-tab active" data-industry="fashion"><span class="ind-emoji">👗</span> Fashion</button>
+      <button class="ind-tab" data-industry="electronics"><span class="ind-emoji">📱</span> Electronics</button>
+      <button class="ind-tab" data-industry="pharma"><span class="ind-emoji">💊</span> Pharma</button>
+      <button class="ind-tab" data-industry="agro"><span class="ind-emoji">🌱</span> Agro & Garden</button>
+      <button class="ind-tab" data-industry="hardware"><span class="ind-emoji">🔧</span> Hardware</button>
+    </div>
+
+    <div class="showcase-grid">
+      <div class="industry-info reveal" id="industry-info">
+        <!-- filled by JS -->
+      </div>
+      <div class="dash-frame reveal tilt-card" data-tilt id="dash-frame">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="window-title" id="dash-title">sanketh.app / fashion</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-kpis" id="dash-kpis"><!-- filled by JS --></div>
+          <div class="dash-chart">
+            <div class="dash-chart-head">
+              <span>Demand forecast · 12 weeks</span>
+              <div class="legend">
+                <i class="lg-hist"></i>History
+                <i class="lg-base"></i>Expected
+                <i class="lg-band"></i>Range
+              </div>
+            </div>
+            <svg id="dash-chart-svg" viewBox="0 0 560 200" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="dash-alerts" id="dash-alerts"><!-- filled by JS --></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARKET ============ -->
+  <section id="market" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">04 · Market Opportunity</span>
+      <h2 class="section-title">A massive market, <span class="gradient-text">measured in rupees</span></h2>
+      <p class="section-sub">Supply chain software is one of the fastest-growing enterprise categories. India is the most under-served large market in it.</p>
+    </div>
+    <div class="market-grid">
+      <div class="tam-visual reveal">
+        <div class="tam-ring tam">
+          <div class="tam-ring sam">
+            <div class="tam-ring som">
+              <span class="som-label">SOM<br><strong>₹425 Cr</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="tam-legend">
+          <div><i class="lg tam-i"></i><strong>TAM · ₹140 L Cr</strong><span>Global supply chain & analytics software spend</span></div>
+          <div><i class="lg sam-i"></i><strong>SAM · ₹8,500 Cr</strong><span>India supply-chain SaaS for mid-market & enterprise</span></div>
+          <div><i class="lg som-i"></i><strong>SOM · ₹425 Cr</strong><span>Realistic 5% capture across our five verticals in 5 years</span></div>
+        </div>
+      </div>
+      <div class="market-points">
+        <div class="market-point reveal" data-delay="0">
+          <span class="mp-num">①</span>
+          <div><h4>Why now</h4><p>AI forecasting models that needed crores in R&D are now open — Sanketh productizes them before incumbents retool their legacy systems.</p></div>
+        </div>
+        <div class="market-point reveal" data-delay="120">
+          <span class="mp-num">②</span>
+          <div><h4>Why India</h4><p>GST digitization + ONDC + e-commerce boom mean lakhs of Indian businesses now have the digital sales data Sanketh feeds on — but no tool to use it.</p></div>
+        </div>
+        <div class="market-point reveal" data-delay="240">
+          <span class="mp-num">③</span>
+          <div><h4>Why us</h4><p>Competitors serve one industry each. Sanketh's multi-vertical engine spreads R&D cost across five markets and opens cross-sell from day one.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BUSINESS MODEL ============ -->
+  <section id="business" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">05 · Business Model</span>
+      <h2 class="section-title">Predictable SaaS revenue, <span class="gradient-text">priced in ₹</span></h2>
+      <p class="section-sub">Subscription plans plus usage-based expansion. Customers grow → their data grows → their bill grows. Net revenue retention is built into the model.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal tilt-card" data-tilt data-delay="0">
+        <h3>Growth</h3>
+        <div class="price"><span class="cur">₹</span>49,999<span class="per">/month</span></div>
+        <p class="price-sub">For D2C brands & single-city retailers</p>
+        <ul>
+          <li>Up to 2,000 products tracked</li>
+          <li>Demand forecasts & stockout alerts</li>
+          <li>Shopify integration</li>
+          <li>1 industry vertical</li>
+        </ul>
+      </div>
+      <div class="price-card featured reveal tilt-card" data-tilt data-delay="150">
+        <div class="popular-tag">Core revenue driver</div>
+        <h3>Scale</h3>
+        <div class="price"><span class="cur">₹</span>1,49,999<span class="per">/month</span></div>
+        <p class="price-sub">For multi-warehouse, multi-channel businesses</p>
+        <ul>
+          <li>Up to 20,000 products tracked</li>
+          <li>Market trend sensing & what-if simulator</li>
+          <li>ERP integration + automated reorders</li>
+          <li>Priority support & onboarding</li>
+        </ul>
+      </div>
+      <div class="price-card reveal tilt-card" data-tilt data-delay="300">
+        <h3>Enterprise</h3>
+        <div class="price">Custom<span class="per"> · ₹40L+ /year</span></div>
+        <p class="price-sub">For pharma & large manufacturers</p>
+        <ul>
+          <li>Unlimited products, multi-region</li>
+          <li>Pharma compliance suite (GxP)</li>
+          <li>Dedicated success manager</li>
+          <li>SLA-backed uptime & audit support</li>
+        </ul>
+      </div>
+    </div>
+    <div class="unit-econ reveal">
+      <div class="ue-item"><h4>₹<span class="count-up" data-target="18" data-decimals="0">0</span> L</h4><p>Average annual contract value (blended)</p></div>
+      <div class="ue-divider"></div>
+      <div class="ue-item"><h4><span class="count-up" data-target="6.5" data-decimals="1">0</span>×</h4><p>Target LTV : CAC ratio — every ₹1 spent on sales returns ₹6.5</p></div>
+      <div class="ue-divider"></div>
+      <div class="ue-item"><h4><span class="count-up" data-target="85" data-decimals="0">0</span>%</h4><p>Gross margin — software economics, minimal delivery cost</p></div>
+      <div class="ue-divider"></div>
+      <div class="ue-item"><h4>&lt; <span class="count-up" data-target="4" data-decimals="0">0</span> months</h4><p>Customer payback period at Scale tier</p></div>
+    </div>
+  </section>
+
+  <!-- ============ ROI CALCULATOR ============ -->
+  <section id="roi" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">06 · ROI Calculator</span>
+      <h2 class="section-title">What Sanketh saves a customer — <span class="gradient-text">in rupees</span></h2>
+      <p class="section-sub">Drag the sliders to model any customer. This is the exact pitch our sales team makes — and why customers sign.</p>
+    </div>
+    <div class="roi-shell reveal">
+      <div class="roi-controls">
+        <h3>Customer profile</h3>
+        <div class="control-group">
+          <div class="control-head">
+            <label for="rev-slider">Annual revenue</label>
+            <span class="control-val" id="rev-val">₹25 Cr</span>
+          </div>
+          <input type="range" id="rev-slider" min="0" max="100" step="1" value="35">
+          <div class="range-ends"><span>₹5 Cr</span><span>₹500 Cr</span></div>
+        </div>
+        <div class="control-group">
+          <div class="control-head">
+            <label for="stockout-slider">Current stockout rate</label>
+            <span class="control-val" id="stockout-val">8%</span>
+          </div>
+          <input type="range" id="stockout-slider" min="2" max="25" step="0.5" value="8">
+          <div class="range-ends"><span>2%</span><span>25%</span></div>
+        </div>
+        <div class="control-group">
+          <div class="control-head">
+            <label for="carry-slider">Inventory carrying cost</label>
+            <span class="control-val" id="carry-val">22%</span>
+          </div>
+          <input type="range" id="carry-slider" min="10" max="40" step="1" value="22">
+          <div class="range-ends"><span>10%</span><span>40%</span></div>
+        </div>
+        <div class="roi-note">Assumptions: Sanketh recovers ~35% of stockout-lost sales, cuts excess inventory ~18%, and saves ~0.4% of revenue in planning effort. Conservative vs. published industry benchmarks.</div>
+      </div>
+      <div class="roi-results">
+        <div class="roi-headline">
+          <span class="roi-headline-label">Estimated net annual savings</span>
+          <div class="roi-big" id="roi-net">₹0</div>
+          <div class="roi-chips">
+            <span class="roi-chip" id="roi-multiple">— ROI</span>
+            <span class="roi-chip alt" id="roi-payback">— payback</span>
+          </div>
+        </div>
+        <div class="roi-bars">
+          <div class="roi-bar-row">
+            <div class="roi-bar-head"><span>Recovered sales (fewer stockouts)</span><strong id="bar-stockout-val">₹0</strong></div>
+            <div class="roi-bar"><span id="bar-stockout" style="--clr: var(--accent)"></span></div>
+          </div>
+          <div class="roi-bar-row">
+            <div class="roi-bar-head"><span>Freed working capital (less overstock)</span><strong id="bar-holding-val">₹0</strong></div>
+            <div class="roi-bar"><span id="bar-holding" style="--clr: var(--accent2)"></span></div>
+          </div>
+          <div class="roi-bar-row">
+            <div class="roi-bar-head"><span>Team & planning efficiency</span><strong id="bar-eff-val">₹0</strong></div>
+            <div class="roi-bar"><span id="bar-eff" style="--clr: var(--green)"></span></div>
+          </div>
+          <div class="roi-bar-row cost">
+            <div class="roi-bar-head"><span>Sanketh subscription (annual)</span><strong id="bar-cost-val">−₹0</strong></div>
+            <div class="roi-bar"><span id="bar-cost" style="--clr: var(--red)"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section id="roadmap" class="section">
+    <div class="section-head reveal">
+      <span class="section-tag">07 · Status & Roadmap</span>
+      <h2 class="section-title">The product is <span class="gradient-text">built and live</span> — not a slide deck</h2>
+      <p class="section-sub">Full platform — AI engine, dashboards, billing, compliance — is deployed today. The investment goes into go-to-market, not into building v1.</p>
+    </div>
+    <div class="timeline reveal" id="timeline">
+      <div class="timeline-line"><span id="timeline-fill"></span></div>
+      <div class="tl-item done reveal" data-delay="0">
+        <div class="tl-dot">✓</div>
+        <h4>Done · 2026</h4>
+        <p><strong>Platform built & deployed.</strong> 12 AI models, 23 product screens, billing, pharma compliance, live demo environment.</p>
+      </div>
+      <div class="tl-item done reveal" data-delay="120">
+        <div class="tl-dot">✓</div>
+        <h4>Done · Q2 2026</h4>
+        <p><strong>Live on the web.</strong> Multi-tenant SaaS running with real-time data feeds and a working e-commerce integration.</p>
+      </div>
+      <div class="tl-item next reveal" data-delay="240">
+        <div class="tl-dot">→</div>
+        <h4>Next · Q3–Q4 2026</h4>
+        <p><strong>First 10 paying pilots</strong> across fashion & electronics in India. Target: ₹1.5 Cr ARR exiting 2026.</p>
+      </div>
+      <div class="tl-item reveal" data-delay="360">
+        <div class="tl-dot"></div>
+        <h4>2027</h4>
+        <p><strong>Scale to 100+ customers</strong>, launch pharma vertical commercially, ₹12 Cr ARR target, Series A readiness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="cta-section">
+    <div class="cta-card reveal">
+      <h2>Let's talk — <span class="gradient-text">investors & mentors welcome</span></h2>
+      <p>See the live product, the numbers behind the model, and where you fit in. We'll respond within 24 hours.</p>
+      <form class="cta-form" id="lead-form">
+        <input type="email" placeholder="you@firm.com" required id="lead-email" aria-label="Email">
+        <button class="btn btn-primary btn-lg magnetic" type="submit">
+          <span class="btn-label">Request the Deck</span>
+          <span class="btn-shine"></span>
+        </button>
+      </form>
+      <div class="cta-success" id="cta-success">✓ Thank you! We'll be in touch within 24 hours.</div>
+      <div class="cta-links">
+        <a href="https://prisma-live-6bb9.web.app" target="_blank" rel="noopener">Launch the live app ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-shell">
+      <div class="footer-brand">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="lgFoot" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#6d5cff"/><stop offset="0.6" stop-color="#19d3ff"/><stop offset="1" stop-color="#2fe6a7"/>
+            </linearGradient>
+          </defs>
+          <circle cx="9" cy="23" r="3.2" fill="url(#lgFoot)"/>
+          <path d="M9 16a7 7 0 0 1 7 7" stroke="url(#lgFoot)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <path d="M9 10.5a12.5 12.5 0 0 1 12.5 12.5" stroke="url(#lgFoot)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.8"/>
+          <path d="M9 5a18 18 0 0 1 18 18" stroke="url(#lgFoot)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.55"/>
+        </svg>
+        <span>Sanketh</span>
+      </div>
+      <p><strong>Sanketh</strong> (संकेत) — Sanskrit for <em>“the signal.”</em> We read the signals markets send before demand moves.<br>© 2026 Sanketh Technologies. Pharma module designed to GxP / 21 CFR Part 11 standards.</p>
+      <div class="footer-links">
+        <a href="#problem">Problem</a>
+        <a href="#product">Product</a>
+        <a href="#market">Market</a>
+        <a href="#roi">ROI</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="sanketh.js"></script>
+  <script src="sanketh-tour.js"></script>
+</body>
+</html>
