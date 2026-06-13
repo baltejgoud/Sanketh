@@ -79,10 +79,10 @@ button { font-family: inherit; }
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(circle at 50% 0%, rgba(243, 244, 246, 0.6) 0%, transparent 60%),
-    radial-gradient(circle at 100% 30%, rgba(238, 242, 255, 0.7) 0%, transparent 45%),
-    radial-gradient(circle at 0% 70%, rgba(240, 253, 250, 0.7) 0%, transparent 50%);
-  opacity: 0.9;
+    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 65%),
+    radial-gradient(circle at 100% 30%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 0% 70%, rgba(16, 185, 129, 0.07) 0%, transparent 55%);
+  opacity: 1;
 }
 
 /* Layer 2: Grid Overlay */
@@ -90,8 +90,8 @@ button { font-family: inherit; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(15, 23, 42, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 60%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 60%, transparent 100%);
@@ -102,13 +102,13 @@ button { font-family: inherit; }
   position: absolute;
   border-radius: 50%;
   filter: blur(130px);
-  opacity: 0.12;
+  opacity: 0.18;
   will-change: transform;
 }
 .orb-1 {
   width: 600px;
   height: 600px;
-  background: #c7d2fe;
+  background: #818cf8;
   top: -150px;
   left: -100px;
   animation: orb-drift-1 28s ease-in-out infinite alternate;
@@ -116,7 +116,7 @@ button { font-family: inherit; }
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: #bae6fd;
+  background: #38bdf8;
   top: 25%;
   right: -150px;
   animation: orb-drift-2 24s ease-in-out infinite alternate-reverse;
@@ -124,7 +124,7 @@ button { font-family: inherit; }
 .orb-3 {
   width: 550px;
   height: 550px;
-  background: #a7f3d0;
+  background: #34d399;
   bottom: -200px;
   left: 20%;
   animation: orb-drift-3 30s ease-in-out infinite alternate;
@@ -161,17 +161,16 @@ button { font-family: inherit; }
   height: 100%;
 }
 .flow-path {
-  stroke: rgba(79, 70, 229, 0.04);
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-dasharray: 200;
   animation: flow-dash 12s linear infinite;
 }
 .flow-path-1 {
-  stroke: rgba(79, 70, 229, 0.04);
+  stroke: rgba(79, 70, 229, 0.09);
 }
 .flow-path-2 {
-  stroke: rgba(16, 185, 129, 0.03);
+  stroke: rgba(16, 185, 129, 0.08);
   animation-duration: 16s;
   animation-direction: reverse;
 }
@@ -305,7 +304,7 @@ button { font-family: inherit; }
   display: flex; align-items: center;
   padding: 140px 24px 80px;
   z-index: 2;
-  background: var(--bg);
+  background: transparent;
 }
 .hero-inner {
   max-width: 1280px; margin: 0 auto; width: 100%;
