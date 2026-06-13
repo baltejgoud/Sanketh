@@ -504,4 +504,23 @@
     });
   }
 
+  /* ---------- Mouse Parallax for Hero Floating Cards ---------- */
+  const heroVisual = document.querySelector('.hero-visual');
+  if (heroVisual && !prefersReducedMotion) {
+    window.addEventListener('mousemove', function (e) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const mx = (e.clientX - w / 2) / (w / 2); // range [-1, 1]
+      const my = (e.clientY - h / 2) / (h / 2); // range [-1, 1]
+      
+      const wraps = heroVisual.querySelectorAll('.parallax-wrap');
+      wraps.forEach(function (wrap) {
+        const depth = parseFloat(wrap.getAttribute('data-parallax-depth') || '0.2');
+        const tx = mx * depth * 40; // max 40px translation
+        const ty = my * depth * 40;
+        wrap.style.transform = 'translate3d(' + tx + 'px, ' + ty + 'px, 0)';
+      });
+    });
+  }
+
 })();

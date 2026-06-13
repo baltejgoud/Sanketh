@@ -13,13 +13,36 @@
 </head>
 <body>
 
-  <!-- ============ AMBIENT LAYERS ============ -->
+  <!-- ============ AMBIENT LAYERS & 6-LAYER BG SYSTEM ============ -->
   <div class="scroll-progress" id="scroll-progress"></div>
-  <div class="bg-grid"></div>
-  <div class="bg-aurora">
-    <span class="aurora a1"></span>
-    <span class="aurora a2"></span>
-    <span class="aurora a3"></span>
+  
+  <div class="bg-system">
+    <div class="bg-layer radial-grad"></div>
+    <div class="bg-layer grid-overlay"></div>
+    <div class="bg-layer floating-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="bg-layer noise-texture"></div>
+    <div class="bg-layer data-flow-grid">
+      <svg class="bg-flow-svg" viewBox="0 0 1440 900" preserveAspectRatio="none">
+        <path d="M-100 150 Q 300 100 700 300 T 1500 200" fill="none" class="flow-path flow-path-1" />
+        <path d="M-100 600 Q 400 700 800 500 T 1500 750" fill="none" class="flow-path flow-path-2" />
+      </svg>
+    </div>
+    <div class="bg-layer particle-field">
+      <span class="p-dot p1"></span>
+      <span class="p-dot p2"></span>
+      <span class="p-dot p3"></span>
+      <span class="p-dot p4"></span>
+      <span class="p-dot p5"></span>
+      <span class="p-dot p6"></span>
+      <span class="p-dot p7"></span>
+      <span class="p-dot p8"></span>
+      <span class="p-dot p9"></span>
+      <span class="p-dot p10"></span>
+    </div>
   </div>
 
   <!-- ============ NAVIGATION ============ -->
@@ -28,15 +51,23 @@
       <a href="#hero" class="logo">
         <svg viewBox="0 0 32 32" aria-hidden="true" class="logo-svg">
           <defs>
-            <linearGradient id="logo-grad" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient id="logo-grad-1" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4f46e5"/>
+              <stop offset="50%" stop-color="#0ea5e9"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+            <linearGradient id="logo-grad-2" x1="32" y1="32" x2="0" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#4f46e5"/>
               <stop offset="100%" stop-color="#0ea5e9"/>
             </linearGradient>
           </defs>
-          <path d="M12 26 A10 10 0 1 1 20 6" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <path d="M20 6 A10 10 0 0 1 20 26" stroke="#10b981" stroke-width="2.5" stroke-dasharray="1 4" stroke-linecap="round" fill="none"/>
-          <circle cx="20" cy="6" r="3.5" fill="#0ea5e9"/>
-          <circle cx="12" cy="26" r="2.5" fill="#4f46e5"/>
+          <circle cx="16" cy="16" r="13" stroke="rgba(15, 23, 42, 0.04)" stroke-width="1" fill="none" />
+          <path d="M10 24 A9 9 0 1 1 22 8" stroke="url(#logo-grad-1)" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M22 8 A9 9 0 0 1 22 24" stroke="#10b981" stroke-width="2" stroke-dasharray="1.5 3.5" stroke-linecap="round" fill="none"/>
+          <path d="M16 20 A4 4 0 1 0 16 12" stroke="url(#logo-grad-2)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="8" r="2.5" fill="#10b981" />
+          <circle cx="10" cy="24" r="3" fill="#4f46e5" />
+          <circle cx="16" cy="12" r="1.5" fill="#0ea5e9" />
         </svg>
         <span>Sanketh</span>
       </a>
@@ -106,43 +137,113 @@
       </div>
 
       <div class="hero-visual reveal" data-delay="500">
-        <div class="glass-window tilt-card" data-tilt>
-          <div class="window-bar">
-            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <span class="window-title">Sanketh · Live Intelligence Feed</span>
-            <span class="live-chip"><span class="pulse-dot"></span>LIVE</span>
-          </div>
-          <div class="hero-mini-chart">
-            <svg id="hero-chart" viewBox="0 0 420 120" preserveAspectRatio="none"></svg>
-            <div class="mini-chart-caption">
-              <span>Demand forecast · next 8 weeks</span>
-              <span class="chip-up">▲ trending +12%</span>
+        <!-- Connecting Data Flow Paths between cards -->
+        <div class="cards-connector-svg">
+          <svg class="connector-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="path-1-to-2" d="M 180 150 C 180 200, 300 170, 300 210" stroke="rgba(79, 70, 229, 0.12)" stroke-width="2.5" stroke-dasharray="4,4" />
+            <path id="path-2-to-3" d="M 280 320 C 280 370, 220 350, 220 400" stroke="rgba(244, 63, 94, 0.12)" stroke-width="2.5" stroke-dasharray="4,4" />
+            <circle r="4.5" fill="var(--accent)">
+              <animateMotion dur="4s" repeatCount="indefinite" path="M 180 150 C 180 200, 300 170, 300 210" />
+            </circle>
+            <circle r="4.5" fill="var(--red)">
+              <animateMotion dur="3s" repeatCount="indefinite" path="M 280 320 C 280 370, 220 350, 220 400" />
+            </circle>
+          </svg>
+        </div>
+
+        <!-- Card 1: AI Forecast Engine -->
+        <div class="parallax-wrap" data-parallax-depth="0.12">
+          <div class="intelligence-card ic-predict float-slow">
+            <div class="ic-header">
+              <span class="ic-tag tag-purple">
+                <span class="pulse-dot-purple"></span> FORECAST ENGINE
+              </span>
+              <span class="ic-model">Chronos-v2 Model</span>
+            </div>
+            <div class="ic-body">
+              <div class="ic-chart-wrapper">
+                <svg class="prediction-sparkline" viewBox="0 0 300 90">
+                  <defs>
+                    <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.2" />
+                      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M 0 70 Q 50 65 100 75 T 200 40 T 300 15 L 300 90 L 0 90 Z" fill="url(#chart-grad)" />
+                  <path d="M 0 70 Q 50 65 100 75 T 200 40 T 300 15" fill="none" stroke="var(--accent)" stroke-width="2.5" />
+                  <line x1="200" y1="0" x2="200" y2="90" stroke="rgba(15, 23, 42, 0.1)" stroke-dasharray="3,3" />
+                  <circle cx="200" cy="40" r="4.5" fill="var(--accent)" />
+                  <text x="205" y="30" fill="var(--text)" font-size="10" font-weight="700">+38% surge</text>
+                </svg>
+              </div>
+              <div class="ic-metrics">
+                <div class="ic-metric-item">
+                  <span class="lbl">Confidence</span>
+                  <span class="val">98.7%</span>
+                </div>
+                <div class="ic-metric-item">
+                  <span class="lbl">Vertical</span>
+                  <span class="val">Fashion SKU</span>
+                </div>
+                <div class="ic-metric-item">
+                  <span class="lbl">Error (MAPE)</span>
+                  <span class="val">&lt; 2.1%</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="ticker-shell">
-            <div class="ticker-fade top"></div>
-            <div class="ticker" id="live-ticker"></div>
-            <div class="ticker-fade bottom"></div>
+        </div>
+
+        <!-- Card 2: Stockout Alert -->
+        <div class="parallax-wrap" data-parallax-depth="0.25">
+          <div class="intelligence-card ic-alert float-medium">
+            <div class="ic-header">
+              <span class="ic-tag tag-red">
+                <span class="pulse-dot-red"></span> STOCKOUT RISK
+              </span>
+              <span class="ic-loc">Bhiwandi Hub (MH)</span>
+            </div>
+            <div class="ic-body">
+              <h4 class="ic-title">SKU FA-2210 (Slim Denim)</h4>
+              <p class="ic-text">Stock depleting rapidly. Warning generated <strong>11 days</strong> ahead of projected stockout.</p>
+              <div class="stock-depletion-bar">
+                <div class="depletion-fill" style="width: 15%;"></div>
+              </div>
+              <div class="ic-alert-footer">
+                <span class="alert-status">Critical Status</span>
+                <span class="alert-action-time">Resolve in 6 days</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="floating-card fc-1">
-          <span class="fc-icon">
-            <svg class="card-svg-icon warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-          </span>
-          <div><strong>Stockout predicted</strong><small>SKU FA-2210 · 11 days out</small></div>
-        </div>
-        <div class="floating-card fc-2">
-          <span class="fc-icon">
-            <svg class="card-svg-icon success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-            </svg>
-          </span>
-          <div><strong>₹4.2 L saved</strong><small>this month · overstock avoided</small></div>
+
+        <!-- Card 3: Automated Action -->
+        <div class="parallax-wrap" data-parallax-depth="0.18">
+          <div class="intelligence-card ic-action float-fast">
+            <div class="ic-header">
+              <span class="ic-tag tag-green">
+                <span class="pulse-dot-green"></span> AUTO-REORDER
+              </span>
+              <span class="ic-erp">Shopify + Tally Sync</span>
+            </div>
+            <div class="ic-body">
+              <div class="reorder-rec">
+                <span class="rec-qty">350 Units Recommended</span>
+                <span class="rec-val">Est. Value: ₹2.8 L</span>
+              </div>
+              <div class="action-btn-row">
+                <span class="action-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  Approved
+                </span>
+                <span class="erp-badge">Synced to ERP</span>
+              </div>
+              <div class="saving-metrics">
+                <span class="save-item">₹42 K holding cost saved</span>
+                <span class="save-item">₹1.4 Cr protected</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -574,15 +675,23 @@
       <div class="footer-brand">
         <svg viewBox="0 0 32 32" aria-hidden="true" class="logo-svg">
           <defs>
-            <linearGradient id="logo-grad-foot" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient id="logo-grad-foot-1" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4f46e5"/>
+              <stop offset="50%" stop-color="#0ea5e9"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+            <linearGradient id="logo-grad-foot-2" x1="32" y1="32" x2="0" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#4f46e5"/>
               <stop offset="100%" stop-color="#0ea5e9"/>
             </linearGradient>
           </defs>
-          <path d="M12 26 A10 10 0 1 1 20 6" stroke="url(#logo-grad-foot)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <path d="M20 6 A10 10 0 0 1 20 26" stroke="#10b981" stroke-width="2.5" stroke-dasharray="1 4" stroke-linecap="round" fill="none"/>
-          <circle cx="20" cy="6" r="3.5" fill="#0ea5e9"/>
-          <circle cx="12" cy="26" r="2.5" fill="#4f46e5"/>
+          <circle cx="16" cy="16" r="13" stroke="rgba(15, 23, 42, 0.04)" stroke-width="1" fill="none" />
+          <path d="M10 24 A9 9 0 1 1 22 8" stroke="url(#logo-grad-foot-1)" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M22 8 A9 9 0 0 1 22 24" stroke="#10b981" stroke-width="2" stroke-dasharray="1.5 3.5" stroke-linecap="round" fill="none"/>
+          <path d="M16 20 A4 4 0 1 0 16 12" stroke="url(#logo-grad-foot-2)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="8" r="2.5" fill="#10b981" />
+          <circle cx="10" cy="24" r="3" fill="#4f46e5" />
+          <circle cx="16" cy="12" r="1.5" fill="#0ea5e9" />
         </svg>
         <span>Sanketh</span>
       </div>
