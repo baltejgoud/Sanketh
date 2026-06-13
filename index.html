@@ -13,28 +13,8 @@
 </head>
 <body>
 
-  <!-- ============ PRELOADER ============ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-logo">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <defs>
-          <linearGradient id="lgPre" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#6d5cff"/><stop offset="0.6" stop-color="#19d3ff"/><stop offset="1" stop-color="#2fe6a7"/>
-          </linearGradient>
-        </defs>
-        <circle cx="9" cy="23" r="3.2" fill="url(#lgPre)"/>
-        <path d="M9 16a7 7 0 0 1 7 7" stroke="url(#lgPre)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-        <path d="M9 10.5a12.5 12.5 0 0 1 12.5 12.5" stroke="url(#lgPre)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.8"/>
-        <path d="M9 5a18 18 0 0 1 18 18" stroke="url(#lgPre)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.55"/>
-      </svg>
-      <span>Sanketh</span>
-    </div>
-    <div class="preloader-bar"><span></span></div>
-  </div>
-
   <!-- ============ AMBIENT LAYERS ============ -->
   <div class="scroll-progress" id="scroll-progress"></div>
-  <div class="cursor-glow" id="cursor-glow"></div>
   <div class="bg-grid"></div>
   <div class="bg-aurora">
     <span class="aurora a1"></span>
@@ -82,21 +62,18 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
-    <canvas id="hero-canvas"></canvas>
     <div class="hero-inner">
       <div class="hero-copy">
         <div class="hero-badge reveal" data-delay="0">
-          <span class="pulse-dot"></span> Enterprise AI SaaS · Live & Demo-Ready
+          <span class="pulse-dot"></span> Enterprise Inventory SaaS · Live & Demo-Ready
         </div>
         <h1 class="hero-title">
-          <span class="line-mask"><span class="line">Every business guesses</span></span>
-          <span class="line-mask"><span class="line">what to stock.</span></span>
-          <span class="line-mask"><span class="line gradient-text">Sanketh knows.</span></span>
+          <span class="line-mask"><span class="line">Stop freezing capital</span></span>
+          <span class="line-mask"><span class="line">in dead stock.</span></span>
+          <span class="line-mask"><span class="line gradient-text">Predict demand.</span></span>
         </h1>
         <p class="hero-sub reveal" data-delay="450">
-          Sanketh is an AI platform that predicts product demand <strong>weeks before it happens</strong> —
-          so businesses stop losing money to empty shelves and dead stock.
-          One platform, five industries, measurable savings in rupees.
+          Sanketh is an enterprise planning engine that integrates your sales channels, warehouses, and suppliers. Avoid stockouts during peak festival surges and optimize your reorders in Rupees.
         </p>
         <div class="hero-actions reveal" data-delay="600">
           <a href="#roi" class="btn btn-primary btn-lg magnetic">
@@ -148,11 +125,22 @@
           </div>
         </div>
         <div class="floating-card fc-1">
-          <span class="fc-icon">⚠️</span>
+          <span class="fc-icon">
+            <svg class="card-svg-icon warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
           <div><strong>Stockout predicted</strong><small>SKU FA-2210 · 11 days out</small></div>
         </div>
         <div class="floating-card fc-2">
-          <span class="fc-icon">💰</span>
+          <span class="fc-icon">
+            <svg class="card-svg-icon success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </span>
           <div><strong>₹4.2 L saved</strong><small>this month · overstock avoided</small></div>
         </div>
       </div>
@@ -162,21 +150,50 @@
     </a>
   </section>
 
-  <!-- ============ METRICS MARQUEE ============ -->
-  <div class="marquee-strip" id="metrics-strip">
-    <div class="marquee-track">
-      <span>🏭 5 industry verticals</span><i>◆</i>
-      <span>🤖 12 AI forecasting models</span><i>◆</i>
-      <span>⚡ Day-1 forecasts, zero training data needed</span><i>◆</i>
-      <span>🛡️ Pharma-grade compliance (US FDA 21 CFR Part 11)</span><i>◆</i>
-      <span>🔌 Plug-and-play Shopify & ERP integration</span><i>◆</i>
-      <span>📈 Real-time market trend sensing</span><i>◆</i>
-      <span>🏭 5 industry verticals</span><i>◆</i>
-      <span>🤖 12 AI forecasting models</span><i>◆</i>
-      <span>⚡ Day-1 forecasts, zero training data needed</span><i>◆</i>
-      <span>🛡️ Pharma-grade compliance (US FDA 21 CFR Part 11)</span><i>◆</i>
-      <span>🔌 Plug-and-play Shopify & ERP integration</span><i>◆</i>
-      <span>📈 Real-time market trend sensing</span><i>◆</i>
+  <!-- ============ TRUST & INTEGRATIONS BAR ============ -->
+  <div class="trust-bar" id="metrics-strip">
+    <div class="trust-inner">
+      <span class="trust-label">Syncs seamlessly with:</span>
+      <div class="logo-grid">
+        <span class="logo-item">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Shopify India
+        </span>
+        <span class="logo-item">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+            <line x1="12" y1="2" x2="12" y2="22"/>
+            <line x1="12" y1="12" x2="22" y2="8.5"/>
+            <line x1="12" y1="12" x2="2" y2="8.5"/>
+          </svg>
+          ONDC Network
+        </span>
+        <span class="logo-item">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <line x1="9" y1="9" x2="15" y2="9"/>
+            <line x1="12" y1="9" x2="12" y2="15"/>
+          </svg>
+          Tally Prime
+        </span>
+        <span class="logo-item">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <path d="M2 12h20"/>
+          </svg>
+          Zoho Books
+        </span>
+        <span class="logo-item">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          SAP Business One
+        </span>
+      </div>
     </div>
   </div>
 
@@ -188,25 +205,47 @@
       <p class="section-sub">Most companies still plan stock using last year's spreadsheets. The result is a silent, recurring tax on revenue — paid every single month.</p>
     </div>
     <div class="problem-grid">
-      <div class="stat-card reveal tilt-card" data-tilt data-delay="0">
-        <div class="stat-icon">📉</div>
+      <div class="stat-card reveal" data-delay="0">
+        <div class="stat-icon">
+          <svg class="problem-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+            <polyline points="17 18 23 18 23 12"/>
+          </svg>
+        </div>
         <h3>₹<span class="count-up" data-target="1.75" data-decimals="2">0</span> L Cr</h3>
-        <p class="stat-label">lost every year by Indian retail to stockouts — customers walk away when shelves are empty</p>
+        <p class="stat-label">lost annually by Indian retail to stockouts and supply-chain delays at key distribution hubs like Bhiwandi and Delhi-NCR.</p>
       </div>
-      <div class="stat-card reveal tilt-card" data-tilt data-delay="120">
-        <div class="stat-icon">📦</div>
+      <div class="stat-card reveal" data-delay="120">
+        <div class="stat-icon">
+          <svg class="problem-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l-7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
         <h3><span class="count-up" data-target="30" data-decimals="0">0</span>%</h3>
-        <p class="stat-label">of working capital sits frozen in excess inventory that may never sell at full price</p>
+        <p class="stat-label">of working capital sits frozen in overstocked warehouse inventory that could be deployed for growth.</p>
       </div>
-      <div class="stat-card reveal tilt-card" data-tilt data-delay="240">
-        <div class="stat-icon">⏱️</div>
+      <div class="stat-card reveal" data-delay="240">
+        <div class="stat-icon">
+          <svg class="problem-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
         <h3><span class="count-up" data-target="0" data-decimals="0">0</span> days</h3>
-        <p class="stat-label">of advance warning with traditional systems — they discover a stockout only after it happens</p>
+        <p class="stat-label">of advance warning with traditional systems — they discover a stockout only after it has occurred on the shelves.</p>
       </div>
-      <div class="stat-card reveal tilt-card" data-tilt data-delay="360">
-        <div class="stat-icon">📊</div>
+      <div class="stat-card reveal" data-delay="360">
+        <div class="stat-icon">
+          <svg class="problem-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
         <h3><span class="count-up" data-target="73" data-decimals="0">0</span>%</h3>
-        <p class="stat-label">of supply chain planning in India still runs on manual spreadsheets and gut feeling</p>
+        <p class="stat-label">of mid-market Indian enterprises still manage inventory using legacy spreadsheets and manual tally entries.</p>
       </div>
     </div>
     <div class="problem-punch reveal">
@@ -229,7 +268,7 @@
           <span class="core"></span>
         </div>
         <h3>Sense</h3>
-        <p>Pulls in live sales from Shopify/ERP plus external signals — Google search trends, social buzz, weather, economic data, even competitor prices.</p>
+        <p>Pulls in live sales from Shopify, ONDC, and ERP systems, fused with local drivers like Google search trends, festive calendars, and monsoon predictions.</p>
         <div class="step-foot">8+ live data sources</div>
       </div>
       <div class="step-arrow reveal" data-delay="150">→</div>
@@ -239,7 +278,7 @@
           <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span><span class="bar b4"></span><span class="bar b5"></span>
         </div>
         <h3>Predict</h3>
-        <p>12 AI models — including Amazon's and Google's latest forecasting tech — compete, and Sanketh automatically picks the most accurate blend per product.</p>
+        <p>12 advanced ML forecasting models compete, and Sanketh automatically ensembles them to predict optimal stock levels per warehouse and SKU.</p>
         <div class="step-foot">Best / base / worst-case scenarios</div>
       </div>
       <div class="step-arrow reveal" data-delay="350">→</div>
@@ -250,7 +289,7 @@
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3>Act</h3>
-        <p>Sends shortage alerts 5–14 days early, recommends exact reorder quantities, and can push purchase orders straight into the company's ERP.</p>
+        <p>Pushes automated purchase orders directly to Tally Prime or SAP, and alerts warehouse managers via WhatsApp 14 days before stockouts.</p>
         <div class="step-foot">Alerts → decisions → ₹ saved</div>
       </div>
     </div>
@@ -272,18 +311,28 @@
     </div>
 
     <div class="industry-tabs reveal" id="industry-tabs">
-      <button class="ind-tab active" data-industry="fashion"><span class="ind-emoji">👗</span> Fashion</button>
-      <button class="ind-tab" data-industry="electronics"><span class="ind-emoji">📱</span> Electronics</button>
-      <button class="ind-tab" data-industry="pharma"><span class="ind-emoji">💊</span> Pharma</button>
-      <button class="ind-tab" data-industry="agro"><span class="ind-emoji">🌱</span> Agro & Garden</button>
-      <button class="ind-tab" data-industry="hardware"><span class="ind-emoji">🔧</span> Hardware</button>
+      <button class="ind-tab active" data-industry="fashion">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2.14a2 2 0 00-1.18 0l-4.38 1.32a2 2 0 01-1.18 0L4.88 2.14a2 2 0 00-2.5 1.56L1.1 11.2a2 2 0 001.2 2.2l4.8 1.6a2 2 0 011.2 1.34l.9 2.7a2 2 0 003.8 0l.9-2.7a2 2 0 011.2-1.34l4.8-1.6a2 2 0 001.2-2.2l-1.28-7.5a2 2 0 00-2.52-1.54z"/></svg> Fashion
+      </button>
+      <button class="ind-tab" data-industry="electronics">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Electronics
+      </button>
+      <button class="ind-tab" data-industry="pharma">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.25-2.5 3-2.5 5h20c0-2-1-3.75-2.5-5M12 2v14M7 8h10"/></svg> Pharma
+      </button>
+      <button class="ind-tab" data-industry="agro">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6a6 6 0 00-6 6M12 10a2 2 0 00-2 2"/></svg> Agro & Garden
+      </button>
+      <button class="ind-tab" data-industry="hardware">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Hardware
+      </button>
     </div>
 
     <div class="showcase-grid">
       <div class="industry-info reveal" id="industry-info">
         <!-- filled by JS -->
       </div>
-      <div class="dash-frame reveal tilt-card" data-tilt id="dash-frame">
+      <div class="dash-frame reveal" id="dash-frame">
         <div class="window-bar">
           <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
           <span class="window-title" id="dash-title">sanketh.app / fashion</span>
@@ -292,14 +341,12 @@
           <div class="dash-kpis" id="dash-kpis"><!-- filled by JS --></div>
           <div class="dash-chart">
             <div class="dash-chart-head">
-              <span>Demand forecast · 12 weeks</span>
-              <div class="legend">
-                <i class="lg-hist"></i>History
-                <i class="lg-base"></i>Expected
-                <i class="lg-band"></i>Range
-              </div>
+              <span id="dash-chart-title">Demand Signal SKU Table</span>
+              <span class="live-badge"><span class="pulse-dot"></span> Real-time Recommendations</span>
             </div>
-            <svg id="dash-chart-svg" viewBox="0 0 560 200" preserveAspectRatio="none"></svg>
+            <div class="dash-table-wrapper" id="dash-sku-table">
+              <!-- Filled by JS -->
+            </div>
           </div>
           <div class="dash-alerts" id="dash-alerts"><!-- filled by JS --></div>
         </div>
@@ -336,7 +383,7 @@
         </div>
         <div class="market-point reveal" data-delay="120">
           <span class="mp-num">②</span>
-          <div><h4>Why India</h4><p>GST digitization + ONDC + e-commerce boom mean lakhs of Indian businesses now have the digital sales data Sanketh feeds on — but no tool to use it.</p></div>
+          <div><h4>Why India</h4><p>GST compliance, ONDC expansion, and e-commerce penetration mean Indian brands generate high-volume transaction records that Sanketh turns into predictive action.</p></div>
         </div>
         <div class="market-point reveal" data-delay="240">
           <span class="mp-num">③</span>
@@ -354,38 +401,38 @@
       <p class="section-sub">Subscription plans plus usage-based expansion. Customers grow → their data grows → their bill grows. Net revenue retention is built into the model.</p>
     </div>
     <div class="pricing-grid">
-      <div class="price-card reveal tilt-card" data-tilt data-delay="0">
+      <div class="price-card reveal" data-delay="0">
         <h3>Growth</h3>
         <div class="price"><span class="cur">₹</span>49,999<span class="per">/month</span></div>
         <p class="price-sub">For D2C brands & single-city retailers</p>
         <ul>
-          <li>Up to 2,000 products tracked</li>
+          <li>Up to 2,000 SKUs tracked</li>
+          <li>1 warehouse integration</li>
+          <li>Shopify & WooCommerce connector</li>
           <li>Demand forecasts & stockout alerts</li>
-          <li>Shopify integration</li>
-          <li>1 industry vertical</li>
         </ul>
       </div>
-      <div class="price-card featured reveal tilt-card" data-tilt data-delay="150">
+      <div class="price-card featured reveal" data-delay="150">
         <div class="popular-tag">Core revenue driver</div>
         <h3>Scale</h3>
         <div class="price"><span class="cur">₹</span>1,49,999<span class="per">/month</span></div>
         <p class="price-sub">For multi-warehouse, multi-channel businesses</p>
         <ul>
-          <li>Up to 20,000 products tracked</li>
-          <li>Market trend sensing & what-if simulator</li>
-          <li>ERP integration + automated reorders</li>
-          <li>Priority support & onboarding</li>
+          <li>Up to 20,000 SKUs tracked</li>
+          <li>Up to 3 warehouses synced</li>
+          <li>Zoho Books & Tally Prime integration</li>
+          <li>WhatsApp alerts & what-if simulator</li>
         </ul>
       </div>
-      <div class="price-card reveal tilt-card" data-tilt data-delay="300">
+      <div class="price-card reveal" data-delay="300">
         <h3>Enterprise</h3>
         <div class="price">Custom<span class="per"> · ₹40L+ /year</span></div>
         <p class="price-sub">For pharma & large manufacturers</p>
         <ul>
-          <li>Unlimited products, multi-region</li>
-          <li>Pharma compliance suite (GxP)</li>
-          <li>Dedicated success manager</li>
-          <li>SLA-backed uptime & audit support</li>
+          <li>Unlimited SKUs & multi-region hubs</li>
+          <li>Custom ERP integration (SAP, Oracle)</li>
+          <li>Pharma compliance suite (21 CFR Part 11)</li>
+          <li>Dedicated SLA & audit support</li>
         </ul>
       </div>
     </div>

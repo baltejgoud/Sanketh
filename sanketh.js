@@ -22,19 +22,6 @@
     return sign + '₹' + Math.round(n).toLocaleString('en-IN');
   }
 
-  /* ---------- Preloader ---------- */
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      const pre = document.getElementById('preloader');
-      if (pre) pre.classList.add('hidden');
-    }, 700);
-  });
-  // Safety: never trap the user behind the preloader
-  setTimeout(function () {
-    const pre = document.getElementById('preloader');
-    if (pre) pre.classList.add('hidden');
-  }, 3500);
-
   /* ---------- Scroll progress + header state ---------- */
   const progressBar = document.getElementById('scroll-progress');
   const header = document.getElementById('site-header');
@@ -46,22 +33,6 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
-  /* ---------- Cursor glow ---------- */
-  const glow = document.getElementById('cursor-glow');
-  if (glow && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    let gx = -600, gy = -600, tx = gx, ty = gy;
-    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
-    (function loop() {
-      gx += (tx - gx) * 0.12;
-      gy += (ty - gy) * 0.12;
-      glow.style.left = gx + 'px';
-      glow.style.top = gy + 'px';
-      requestAnimationFrame(loop);
-    })();
-  } else if (glow) {
-    glow.style.display = 'none';
-  }
 
   /* ---------- Mobile nav ---------- */
   const burger = document.getElementById('nav-burger');
@@ -125,174 +96,28 @@
   }, { threshold: 0.6 });
   document.querySelectorAll('.count-up').forEach(function (el) { countObserver.observe(el); });
 
-  /* ---------- 3D tilt cards ---------- */
-  if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('[data-tilt]').forEach(function (card) {
-      let raf = null;
-      card.addEventListener('mousemove', function (e) {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        card.style.setProperty('--mx', (px * 100) + '%');
-        card.style.setProperty('--my', (py * 100) + '%');
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(function () {
-          const rx = (0.5 - py) * 6;
-          const ry = (px - 0.5) * 6;
-          card.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-        });
-      });
-      card.addEventListener('mouseleave', function () {
-        if (raf) cancelAnimationFrame(raf);
-        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
-      });
-    });
-    // spotlight position for stat cards
-    document.querySelectorAll('.stat-card').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
-  }
-
-  /* ---------- Magnetic buttons ---------- */
-  if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.magnetic').forEach(function (btn) {
-      btn.addEventListener('mousemove', function (e) {
-        const r = btn.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        btn.style.transform = 'translate(' + dx * 0.18 + 'px,' + dy * 0.22 + 'px)';
-      });
-      btn.addEventListener('mouseleave', function () {
-        btn.style.transform = 'translate(0,0)';
-      });
-    });
-  }
-
-  /* ---------- Hero particle network ---------- */
-  const canvas = document.getElementById('hero-canvas');
-  if (canvas && !prefersReducedMotion) {
-    const ctx = canvas.getContext('2d');
-    let W, H, particles = [];
-    const COUNT = window.innerWidth < 700 ? 36 : 70;
-
-    function resize() {
-      W = canvas.width = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    for (let i = 0; i < COUNT; i++) {
-      particles.push({
-        x: Math.random(), y: Math.random(),
-        vx: (Math.random() - 0.5) * 0.0006,
-        vy: (Math.random() - 0.5) * 0.0006,
-        r: Math.random() * 1.6 + 0.6
-      });
-    }
-    function drawParticles() {
-      ctx.clearRect(0, 0, W, H);
-      for (let i = 0; i < COUNT; i++) {
-        const p = particles[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > 1) p.vx *= -1;
-        if (p.y < 0 || p.y > 1) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(140, 130, 255, 0.55)';
-        ctx.fill();
-        for (let j = i + 1; j < COUNT; j++) {
-          const q = particles[j];
-          const dx = (p.x - q.x) * W, dy = (p.y - q.y) * H;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 130) {
-            ctx.beginPath();
-            ctx.moveTo(p.x * W, p.y * H);
-            ctx.lineTo(q.x * W, q.y * H);
-            ctx.strokeStyle = 'rgba(109, 92, 255,' + (0.14 * (1 - d / 130)) + ')';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-  }
-
-  /* ---------- Hero mini chart (animated line draw) ---------- */
-  function buildPath(points, w, h) {
-    let d = '';
-    points.forEach(function (p, i) {
-      const x = (i / (points.length - 1)) * w;
-      const y = h - p * h;
-      d += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1) + ' ';
-    });
-    return d;
-  }
-  const heroChart = document.getElementById('hero-chart');
-  if (heroChart) {
-    const pts = [0.35, 0.4, 0.32, 0.45, 0.42, 0.55, 0.5, 0.62, 0.58, 0.7, 0.68, 0.8];
-    const ns = 'http://www.w3.org/2000/svg';
-    const defs = document.createElementNS(ns, 'defs');
-    defs.innerHTML =
-      '<linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0%" stop-color="rgba(25,211,255,0.35)"/>' +
-      '<stop offset="100%" stop-color="rgba(25,211,255,0)"/></linearGradient>';
-    heroChart.appendChild(defs);
-
-    const area = document.createElementNS(ns, 'path');
-    area.setAttribute('d', buildPath(pts, 420, 110) + 'L420,120 L0,120 Z');
-    area.setAttribute('fill', 'url(#heroFill)');
-    heroChart.appendChild(area);
-
-    const line = document.createElementNS(ns, 'path');
-    line.setAttribute('d', buildPath(pts, 420, 110));
-    line.setAttribute('fill', 'none');
-    line.setAttribute('stroke', '#19d3ff');
-    line.setAttribute('stroke-width', '2.5');
-    line.setAttribute('stroke-linecap', 'round');
-    heroChart.appendChild(line);
-
-    if (!prefersReducedMotion) {
-      const len = line.getTotalLength();
-      line.style.strokeDasharray = len;
-      line.style.strokeDashoffset = len;
-      line.getBoundingClientRect();
-      line.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(0.22,1,0.36,1) 0.9s';
-      line.style.strokeDashoffset = '0';
-      area.style.opacity = '0';
-      area.style.transition = 'opacity 1.4s ease 1.8s';
-      requestAnimationFrame(function () { area.style.opacity = '1'; });
-    }
-  }
-
-  /* ---------- Live ticker feed ---------- */
+  /* ---------- Live ticker feed (badge tags) ---------- */
   const ticker = document.getElementById('live-ticker');
   if (ticker) {
     const cities = ['Mumbai', 'Bengaluru', 'Delhi NCR', 'Hyderabad', 'Chennai', 'Pune', 'Ahmedabad', 'Kolkata', 'Jaipur', 'Kochi'];
     const events = [
       function () {
         const amt = 800 + Math.floor(Math.random() * 22000);
-        return { icon: '🛒', html: '<strong>New order</strong> · ' + pick(cities), amount: '+₹' + amt.toLocaleString('en-IN'), cls: '' };
+        return { badge: '<span class="tick-b sale">Order</span>', html: '<strong>New order</strong> · ' + pick(cities), amount: '+₹' + amt.toLocaleString('en-IN'), cls: '' };
       },
       function () {
         const days = 5 + Math.floor(Math.random() * 10);
-        return { icon: '⚠️', html: '<strong>Stockout predicted</strong> · SKU ' + skuCode(), amount: days + 'd out', cls: 'warn' };
+        return { badge: '<span class="tick-b warn">Warn</span>', html: '<strong>Stockout predicted</strong> · SKU ' + skuCode(), amount: days + 'd out', cls: 'warn' };
       },
       function () {
-        return { icon: '📈', html: '<strong>Demand spike sensed</strong> · ' + pick(['Google Trends', 'social buzz', 'weather signal']), amount: '+' + (4 + Math.floor(Math.random() * 25)) + '%', cls: '' };
+        return { badge: '<span class="tick-b spike">Spike</span>', html: '<strong>Demand spike sensed</strong> · ' + pick(['Google Trends', 'social buzz', 'weather signal']), amount: '+' + (4 + Math.floor(Math.random() * 25)) + '%', cls: '' };
       },
       function () {
         const amt = 30000 + Math.floor(Math.random() * 400000);
-        return { icon: '💰', html: '<strong>Reorder optimized</strong> · holding cost cut', amount: '+' + formatINR(amt).replace('₹', '₹'), cls: '' };
+        return { badge: '<span class="tick-b saved">Saved</span>', html: '<strong>Reorder optimized</strong> · holding cost cut', amount: '+' + formatINR(amt), cls: '' };
       },
       function () {
-        return { icon: '🚨', html: '<strong>Critical alert</strong> · SKU ' + skuCode() + ' · acted on', amount: 'resolved', cls: 'crit' };
+        return { badge: '<span class="tick-b crit">Alert</span>', html: '<strong>Critical alert</strong> · SKU ' + skuCode() + ' · acted on', amount: 'resolved', cls: 'crit' };
       }
     ];
     function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -303,7 +128,7 @@
       const ev = pick(events)();
       const item = document.createElement('div');
       item.className = 'ticker-item';
-      item.innerHTML = '<span class="t-icon">' + ev.icon + '</span><span>' + ev.html + '</span><span class="t-amount ' + ev.cls + '">' + ev.amount + '</span>';
+      item.innerHTML = ev.badge + '<span>' + ev.html + '</span><span class="t-amount ' + ev.cls + '">' + ev.amount + '</span>';
       ticker.insertBefore(item, ticker.firstChild);
       while (ticker.children.length > 7) ticker.removeChild(ticker.lastChild);
     }
@@ -311,7 +136,7 @@
     setInterval(addTick, 2600);
   }
 
-  /* ---------- Industry showcase ---------- */
+  /* ---------- Industry showcase dataset ---------- */
   const INDUSTRIES = {
     fashion: {
       title: 'Fashion & Apparel',
@@ -332,7 +157,11 @@
         ['crit', 'Sneaker <strong>FA-1182</strong> projected stockout', '11 days out'],
         ['ok', 'Markdown plan for summer line approved', '₹4.1 L margin saved']
       ],
-      seed: [0.42, 0.45, 0.4, 0.5, 0.46, 0.55, 0.52, 0.6, 0.64, 0.6, 0.7, 0.76]
+      skus: [
+        { code: 'FA-2210', name: 'Slim Fit Denim Jacket', wh: 'Bhiwandi Hub (MH)', stock: '85 units', spike: '+38% (Festive)', action: 'Reorder 350 units', cls: 'reorder' },
+        { code: 'FA-1182', name: 'Oversized Graphic Tee', wh: 'Bengaluru East Hub', stock: '12 units', spike: '+14% (Weekend Run)', action: 'Reorder 180 (Urgent)', cls: 'urgent' },
+        { code: 'FA-3049', name: 'Linen Summer Dress', wh: 'Delhi-NCR Central', stock: '420 units', spike: '−8% (Season End)', action: 'Markdown by 15%', cls: 'markdown' }
+      ]
     },
     electronics: {
       title: 'Consumer Electronics',
@@ -353,7 +182,11 @@
         ['warn', 'Power bank <strong>EL-2240</strong> supplier delay detected', '+9 days lead'],
         ['ok', 'Old-gen phone cases auto-marked for clearance', '₹1.9 L recovered']
       ],
-      seed: [0.5, 0.48, 0.55, 0.5, 0.6, 0.56, 0.5, 0.62, 0.68, 0.74, 0.7, 0.8]
+      skus: [
+        { code: 'EL-3301', name: 'TWS Active ANC Earbuds', wh: 'Chennai Port Hub', stock: '140 units', spike: '+64% (Diwali Peak)', action: 'Reorder 800 units', cls: 'reorder' },
+        { code: 'EL-2240', name: '10,000mAh Power Bank', wh: 'Mumbai West Hub', stock: '45 units', spike: '+9d Lead Delay', action: 'Expedite Supplier', cls: 'urgent' },
+        { code: 'EL-1092', name: 'USB-C Fast Charger', wh: 'Delhi-NCR Central', stock: '890 units', spike: 'Stable', action: 'No Action Required', cls: 'stable' }
+      ]
     },
     pharma: {
       title: 'Pharmaceuticals',
@@ -374,7 +207,11 @@
         ['warn', 'Antibiotic <strong>PH-5520</strong> seasonal demand rising', 'order in 8 days'],
         ['ok', 'Cold-chain integrity verified across 6 warehouses', '24/7 monitored']
       ],
-      seed: [0.55, 0.56, 0.54, 0.58, 0.56, 0.6, 0.58, 0.62, 0.6, 0.64, 0.66, 0.68]
+      skus: [
+        { code: 'PH-5520', name: 'Paracetamol 650mg Lot', wh: 'Hyderabad Central', stock: '1,200 boxes', spike: '+28% (Monsoon Flu)', action: 'QA-Release & Ship', cls: 'reorder' },
+        { code: 'PH-8891', name: 'Amoxicillin 500mg', wh: 'Indore Hub', stock: '150 boxes', spike: 'Expiry Risk (90d)', action: 'Redistribute', cls: 'urgent' },
+        { code: 'PH-1102', name: 'Insulin Cold-Storage', wh: 'Bengaluru Main', stock: '80 vials', spike: 'Temp Alert (4.8°C)', action: 'Check Cold Chain', cls: 'markdown' }
+      ]
     },
     agro: {
       title: 'Agro & Garden Centers',
@@ -395,7 +232,11 @@
         ['ok', 'Perishable stock rotation optimized', '₹80 K saved'],
         ['crit', 'Pesticide <strong>AG-2230</strong> regional shortage forming', 'act now']
       ],
-      seed: [0.3, 0.34, 0.3, 0.38, 0.5, 0.66, 0.72, 0.66, 0.5, 0.4, 0.36, 0.42]
+      skus: [
+        { code: 'AG-1108', name: 'Organic Tomato Seeds', wh: 'Pune Central Hub', stock: '30 bags', spike: '+45% (Monsoon)', action: 'Reorder 120 bags', cls: 'reorder' },
+        { code: 'AG-2230', name: 'Bio-NPK Fertilizer', wh: 'Indore Warehouse', stock: '5 bags', spike: 'Shortage Detected', action: 'Reorder 50 (Urgent)', cls: 'urgent' },
+        { code: 'AG-3140', name: 'Drip Irrigation Kit', wh: 'Ahmedabad Hub', stock: '120 sets', spike: 'Stable', action: 'No Action Required', cls: 'stable' }
+      ]
     },
     hardware: {
       title: 'Hardware & Tools',
@@ -416,7 +257,11 @@
         ['warn', 'Power drill <strong>HW-7741</strong> project-season demand up', 'order in 9 days'],
         ['ok', 'Slow-mover clearance list generated', '₹2.3 L to recover']
       ],
-      seed: [0.45, 0.44, 0.46, 0.45, 0.47, 0.46, 0.5, 0.52, 0.5, 0.55, 0.54, 0.58]
+      skus: [
+        { code: 'HW-7741', name: 'Heavy-Duty Power Drill', wh: 'Delhi-NCR Central', stock: '12 units', spike: '+18% (Builder Peak)', action: 'Reorder 45 units', cls: 'reorder' },
+        { code: 'HW-2209', name: 'Stainless Steel Screws', wh: 'Bhiwandi Hub (MH)', stock: '15k units', spike: 'Intermittent Demand', action: 'Optimize Stock Level', cls: 'markdown' },
+        { code: 'HW-9021', name: 'Adjustable Spanner (Chrome)', wh: 'Kolkata East Hub', stock: '350 units', spike: 'Slow Mover (120d)', action: 'Clearance Promo', cls: 'urgent' }
+      ]
     }
   };
 
@@ -424,90 +269,49 @@
   const dashKpis = document.getElementById('dash-kpis');
   const dashAlerts = document.getElementById('dash-alerts');
   const dashTitle = document.getElementById('dash-title');
-  const dashSvg = document.getElementById('dash-chart-svg');
+  const dashSkuTable = document.getElementById('dash-sku-table');
   const dashBody = document.querySelector('.dash-body');
 
-  function renderDashChart(seed) {
-    if (!dashSvg) return;
-    const ns = 'http://www.w3.org/2000/svg';
-    dashSvg.innerHTML =
-      '<defs><linearGradient id="dashFill" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0%" stop-color="rgba(109,92,255,0.4)"/>' +
-      '<stop offset="100%" stop-color="rgba(109,92,255,0)"/></linearGradient></defs>';
-
-    const W = 560, H = 200, histN = 6;
-    // build history + forecast with widening p10/p90 band
-    const hist = seed.slice(0, histN);
-    const fc = seed.slice(histN - 1);
-    const upper = fc.map(function (v, i) { return Math.min(v + 0.04 + i * 0.025, 0.97); });
-    const lower = fc.map(function (v, i) { return Math.max(v - 0.04 - i * 0.025, 0.03); });
-
-    function xAt(i, off) { return ((i + (off || 0)) / (seed.length - 1)) * W; }
-    function yAt(v) { return H - v * H; }
-
-    // band polygon
-    let bandD = 'M';
-    upper.forEach(function (v, i) { bandD += xAt(i, histN - 1).toFixed(1) + ',' + yAt(v).toFixed(1) + ' L'; });
-    for (let i = lower.length - 1; i >= 0; i--) {
-      bandD += xAt(i, histN - 1).toFixed(1) + ',' + yAt(lower[i]).toFixed(1) + (i === 0 ? '' : ' L');
-    }
-    bandD += ' Z';
-    const band = document.createElementNS(ns, 'path');
-    band.setAttribute('d', bandD);
-    band.setAttribute('fill', 'url(#dashFill)');
-    dashSvg.appendChild(band);
-
-    // history line
-    let histD = '';
-    hist.forEach(function (v, i) { histD += (i === 0 ? 'M' : 'L') + xAt(i).toFixed(1) + ',' + yAt(v).toFixed(1) + ' '; });
-    const histLine = document.createElementNS(ns, 'path');
-    histLine.setAttribute('d', histD);
-    histLine.setAttribute('fill', 'none');
-    histLine.setAttribute('stroke', 'rgba(170,176,208,0.7)');
-    histLine.setAttribute('stroke-width', '2.5');
-    dashSvg.appendChild(histLine);
-
-    // forecast line
-    let fcD = '';
-    fc.forEach(function (v, i) { fcD += (i === 0 ? 'M' : 'L') + xAt(i, histN - 1).toFixed(1) + ',' + yAt(v).toFixed(1) + ' '; });
-    const fcLine = document.createElementNS(ns, 'path');
-    fcLine.setAttribute('d', fcD);
-    fcLine.setAttribute('fill', 'none');
-    fcLine.setAttribute('stroke', '#19d3ff');
-    fcLine.setAttribute('stroke-width', '3');
-    fcLine.setAttribute('stroke-linecap', 'round');
-    fcLine.setAttribute('stroke-dasharray', '1 7');
-    dashSvg.appendChild(fcLine);
-
-    // "today" divider
-    const div = document.createElementNS(ns, 'line');
-    div.setAttribute('x1', xAt(histN - 1)); div.setAttribute('x2', xAt(histN - 1));
-    div.setAttribute('y1', 0); div.setAttribute('y2', H);
-    div.setAttribute('stroke', 'rgba(255,255,255,0.15)');
-    div.setAttribute('stroke-dasharray', '4 5');
-    dashSvg.appendChild(div);
-
-    if (!prefersReducedMotion) {
-      [histLine, fcLine].forEach(function (ln, idx) {
-        const len = ln.getTotalLength();
-        ln.style.strokeDasharray = idx === 1 ? '1 7' : len;
-        if (idx === 0) {
-          ln.style.strokeDashoffset = len;
-          ln.getBoundingClientRect();
-          ln.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.22,1,0.36,1)';
-          ln.style.strokeDashoffset = '0';
-        } else {
-          ln.style.opacity = '0';
-          ln.getBoundingClientRect();
-          ln.style.transition = 'opacity 0.9s ease 0.8s';
-          ln.style.opacity = '1';
-        }
-      });
-      band.style.opacity = '0';
-      band.getBoundingClientRect();
-      band.style.transition = 'opacity 1s ease 1s';
-      band.style.opacity = '1';
-    }
+  function renderDashTable(skus) {
+    if (!dashSkuTable) return;
+    
+    let html = 
+      '<div class="dash-table-wrapper">' +
+      '<table class="dash-sku-table">' +
+      '  <thead>' +
+      '    <tr>' +
+      '      <th>SKU Code</th>' +
+      '      <th>Item Name</th>' +
+      '      <th>Warehouse</th>' +
+      '      <th>Current Stock</th>' +
+      '      <th>Predicted Spike</th>' +
+      '      <th>Recommended Action</th>' +
+      '    </tr>' +
+      '  </thead>' +
+      '  <tbody>';
+      
+    skus.forEach(function (sku) {
+      let spikeCls = 'up';
+      if (sku.spike.indexOf('−') !== -1 || sku.spike.indexOf('Stable') !== -1 || sku.spike.indexOf('Intermittent') !== -1) {
+        spikeCls = 'stable';
+      } else if (sku.spike.indexOf('Risk') !== -1 || sku.spike.indexOf('Shortage') !== -1 || sku.spike.indexOf('Delay') !== -1) {
+        spikeCls = 'warn';
+      }
+      
+      html += 
+        '    <tr>' +
+        '      <td><span class="sku-code">' + sku.code + '</span></td>' +
+        '      <td><span class="sku-name">' + sku.name + '</span></td>' +
+        '      <td>' + sku.wh + '</td>' +
+        '      <td>' + sku.stock + '</td>' +
+        '      <td><span class="sku-spike ' + spikeCls + '">' + sku.spike + '</span></td>' +
+        '      <td><span class="sku-action-tag ' + sku.cls + '">' + sku.action + '</span></td>' +
+        '    </tr>';
+    });
+    
+    html += '  </tbody></table></div>';
+    
+    dashSkuTable.innerHTML = html;
   }
 
   function renderIndustry(key) {
@@ -540,7 +344,7 @@
             '<span class="da-tag">' + a[2] + '</span></div>';
         }).join('');
       }
-      renderDashChart(d.seed);
+      renderDashTable(d.skus);
 
       indInfo.classList.remove('switching');
       if (dashBody) dashBody.classList.remove('switching');
@@ -554,6 +358,7 @@
       renderIndustry(tab.getAttribute('data-industry'));
     });
   });
+
   // initial render (no fade)
   (function () {
     const d = INDUSTRIES.fashion;
@@ -577,7 +382,7 @@
           '<span class="da-tag">' + a[2] + '</span></div>';
       }).join('');
     }
-    renderDashChart(d.seed);
+    renderDashTable(d.skus);
   })();
 
   /* ---------- ROI Calculator (INR) ---------- */
@@ -587,7 +392,7 @@
 
   function sliderFill(slider) {
     const min = parseFloat(slider.min), max = parseFloat(slider.max), v = parseFloat(slider.value);
-    slider.style.setProperty('--fill', ((v - min) / (max - min)) * 100 + '%');
+    if (slider) slider.style.setProperty('--fill', ((v - min) / (max - min)) * 100 + '%');
   }
 
   // log scale: ₹5 Cr → ₹500 Cr
@@ -633,18 +438,27 @@
     document.getElementById('carry-val').textContent = parseFloat(carrySlider.value) + '%';
 
     const netEl = document.getElementById('roi-net');
-    netEl.textContent = formatINR(net);
-    bump(netEl);
+    if (netEl) {
+      netEl.textContent = formatINR(net);
+      bump(netEl);
+    }
 
-    document.getElementById('roi-multiple').textContent = roiMultiple.toFixed(1) + '× ROI';
-    document.getElementById('roi-payback').textContent =
-      paybackMonths < 1 ? '< 1 month payback' : paybackMonths.toFixed(1) + ' months payback';
+    const roiMulEl = document.getElementById('roi-multiple');
+    if (roiMulEl) roiMulEl.textContent = roiMultiple.toFixed(1) + '× ROI';
+
+    const paybackEl = document.getElementById('roi-payback');
+    if (paybackEl) {
+      paybackEl.textContent =
+        paybackMonths < 1 ? '< 1 month payback' : paybackMonths.toFixed(1) + ' months payback';
+    }
 
     // bars (scaled to the largest component)
     const maxVal = Math.max(stockoutSaving, holdingSaving, efficiencySaving, cost);
     function setBar(barId, valId, val, negative) {
-      document.getElementById(barId).style.width = Math.max((val / maxVal) * 100, 2) + '%';
-      document.getElementById(valId).textContent = (negative ? '−' : '') + formatINR(val);
+      const bar = document.getElementById(barId);
+      if (bar) bar.style.width = Math.max((val / maxVal) * 100, 2) + '%';
+      const label = document.getElementById(valId);
+      if (label) label.textContent = (negative ? '−' : '') + formatINR(val);
     }
     setBar('bar-stockout', 'bar-stockout-val', stockoutSaving);
     setBar('bar-holding', 'bar-holding-val', holdingSaving);
