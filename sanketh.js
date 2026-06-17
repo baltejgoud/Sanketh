@@ -38,9 +38,15 @@
   const burger = document.getElementById('nav-burger');
   const navLinks = document.getElementById('nav-links');
   if (burger && navLinks) {
-    burger.addEventListener('click', function () { navLinks.classList.toggle('open'); });
+    burger.addEventListener('click', function () {
+      navLinks.classList.toggle('open');
+      burger.classList.toggle('open');
+    });
     navLinks.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') navLinks.classList.remove('open');
+      if (e.target.tagName === 'A') {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+      }
     });
   }
 
